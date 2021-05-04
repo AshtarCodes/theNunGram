@@ -32,12 +32,24 @@ module.exports = {
 
       const post = await req.body;
 
+      let videoClip;         
+        if (videoOrigin(req.body.clip) === 'clips.twitch.tv' || videoOrigin(req.body.clip) === 'www.twitch.tv' ) {
+
+          videoClip = convertTwitchClip(post.clip, 'www.thenungram.herokuapp.com', 'thenungram.herokuapp.com');    
+
+        } else if ( videoOrigin(req.body.clip) === 'youtu.be' || videoOrigin(req.body.clip) === "www.youtube.com") {
+
+          // for youtube videos 
+          videoClip = req.body.clip;
+
+        } else {
+          videoClip = null;
+        };
+      
       await Post.create({
         caption: post.caption,
         image: result.secure_url,
-        clip: convertTwitchClip(post.clip, 'thenungram.herokuapp.com', 'www.thenungram.herokuapp.com'),
-        cloudinaryId: result.public_id,
-        user: req.user.id,
+        clip: videoClip(),
         author: req.user.displayName,
       });
       console.log("Post has been added");
