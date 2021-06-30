@@ -43,9 +43,11 @@
                 ></iframe>
               </div>
               <% } else{ %>
-              <a href="/post/<%= post._id%>">
-                <img class="object-contain" src="<%= post.image %>" />
-              </a>
+              <div class="img-wrap object-contain">
+                <a href="/post/<%= post._id%>">
+                  <img src="<%= post.image %>" alt="user generated content" />
+                </a>
+              </div>
               <div class="credentials">
                 <span>Author: <%= post.author %></span>
                 <br />

@@ -33,6 +33,7 @@ body {
   justify-content: center;
 }
 .post-container {
+  width: 100%;
   margin: 0 auto;
 }
 @media (min-width: 765px) {
@@ -75,6 +76,8 @@ body {
 }
 .img-wrap {
   width: 9rem;
+  border-radius: 10px;
+  margin: 0 auto;
   margin-bottom: 2rem;
 }
 .profile-img {
@@ -82,8 +85,7 @@ body {
   display: block;
 }
 img {
-  /* width: 9rem; */
-  border-radius: 10px;
+  width: 100%;  
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   /* margin: 1%; */
 }
@@ -115,21 +117,18 @@ input[type='text'] {
   margin: 20px;
 }
 .post {
+  width: 100%;
   background-color: rgba(211, 211, 211, 0.55);
   border: 2px solid white;
   border-radius: 10px;
-  margin: 0.85%;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
+  margin: 0.6em;
   text-align: center;
   padding: 2% 4%;
 }
 .postCaption {
   display: flex;
   justify-content: center;
-  font-size: 24px;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 .twitch-clip {
@@ -142,7 +141,7 @@ input[type='text'] {
   justify-content: space-between;
 }
 .likes {
-  font-size: 30px;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 .submit {
