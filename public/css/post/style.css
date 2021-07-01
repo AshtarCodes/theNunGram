@@ -139,11 +139,14 @@ input[type='text'] {
 
 .likes-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 .likes {
-  font-size: 30px;
+  font-size: 0.8rem;
   font-weight: bold;
+}
+.like-display {
+  box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.6)
 }
 .submit {
   width: 60px;

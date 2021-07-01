@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= post.caption %></title>
+    <title>The NunGram | Random Post</title>
 
     <!-- Font Awesome -->
     <link
@@ -23,67 +23,57 @@
     <link rel="stylesheet" href="/css/post/style.css" />
   </head>
   <body>
-         <!--Sidebar-->
-         <section class="sidebar">
-          <i class="fas fa-arrow-circle-up"></i>
-          <a href="/feed">Back to Feed</a>
-          <i class="fas fa-link"></i>
-          <a href="/profile">Submit Post</a>
-          <!-- <i class="fas fa-quote-right"></i>
-          <a href="/quotes/addQuote">Submit Leon Quote</a> -->
-          <i class="fas fa-magic"></i>
-          <a href="/post/randomPost">Random Post Automagic</a>
-          <i class="fas fa-id-badge"></i>
-          <a href="/profile">Profile</a>
-          <i class="fas fa-sign-out-alt"></i>
-          <a href="/auth/logout">Logout</a>
-    
-        </section>
+         
     <!-- Renders a single Post -->
     <div class="viewport-wrap">
       <div class="vanilla-flex-row">
         <section class="wrapper">
-          <div class="post-container">
+          <div class="post-container mt-5">
             <div class="post">
               <span class="postCaption"><%= post.caption %></span>
-              <% if(post.image === null) { %>
-              <div class="flex justify-center">
-                <iframe
-                  class="twitch-clip"
-                  frameborder="0"
-                  src="<%= post.clip %>"
-                  height="480"
-                  width="720"
-                  allowfullscreen="true"
-                ></iframe>
+                <div class="flex justify-center items-center mb-2">
+                  <% if(post.image === null) { %>
+                  <iframe
+                    class="twitch-clip"
+                    frameborder="0"
+                    src="<%= post.clip %>"
+                    height="480"
+                    width="720"
+                    allowfullscreen="true"
+                  ></iframe>
+                  <% } else{ %>
+                    <a href="/post/<%= post._id%>">
+                      <img class="object-contain" src="<%= post.image %>" />
+                    </a>
+                  <% } %>
+                </div>
+                <!-- LIKE AND DELETE ACTIONS -->
+                <div class='likes-container'>
+                  
+                  <div>
+                    <form action="/post/<%= post._id %>/addLike?_method=PUT" method='POST'>
+                      <button class='submit' type="submit" title="Like button" aria-label="Like button">
+                      <img class="like-display" style='width: 40px' src='/imgs/nun.png'/></button>
+                    </form>
+                    <% if (post.likes) { %>
+                      <span class='likes'><%= post.likes > 1 ? post.likes + ' likes' : post.likes + ' like' %></span>
+                    <% } %>
+                  </div>
+                  <!-- If the post belongs to the current user, option to delete -->
+                  <% if(JSON.stringify(user._id ) === JSON.stringify(post.user)) {%>
+
+                  <form name='bunny'
+                  action="/post/<%= post._id %>/deletePost?_method=DELETE"
+                  method="POST"
+                  class="delete-post"
+                  >
+                  <button class="fa fa-trash" type='submit'></button>
+                </form>
+                <% } %>
               </div>
-              <% } else{ %>
-              <a href="/post/<%= post._id%>">
-                <img class="object-contain" src="<%= post.image %>" />
-              </a>
-              <% } %>
             </div>
           </div>
-		<div class='likes-container'>
-            <% if (post.likes) { %>
-                <span class='likes'><%= post.likes %></span>
-            <% } %>
-            <form action="/post/<%= post._id %>/addLike?_method=PUT" method='POST'>
-              <button class='submit' type="submit">
-              <img style='width: 40px' src='/imgs/nun.png'/></button>
-          </a></form>
-
-          <% if(JSON.stringify(user._id ) === JSON.stringify(post.user)) {%>
-
-            <form name='bunny'
-            action="/post/<%= post._id %>/deletePost?_method=DELETE"
-            method="POST"
-            class="delete-post"
-            >
-            <button class="fa fa-trash" type='submit'></button>
-          </form>
-          <% } %>
-        </div>
+          
         </section>
         <!-- Nav Bar -->
         <%- include('partials/main-nav') %>
