@@ -29,9 +29,9 @@
         <section class="wrapper">
           <div class="post-container">
             <% for (post of posts) { %>
-            <div class="post">
+            <div class="post shadow-md">
               <span class="postCaption"><%= post.caption %></span>
-              <div class="flex justify-center">
+              <div class="flex justify-center rounded mb-3">
               <% if(post.image === null) { %>
                 <iframe
                   class="twitch-clip"
@@ -49,7 +49,7 @@
                 </a>
               <% } %>
               </div>
-              <div class="credentials">
+              <div class="credentials bg-blue-100 rounded shadow-xl text-left p-2 mb-2">
                 <span>Author: <%= post.author %></span>
                 <br />
                 <span>Created At: <%= post.createdAt %></span>
